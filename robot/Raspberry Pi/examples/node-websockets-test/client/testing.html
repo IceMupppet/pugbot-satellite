@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web socket Experiment</title>
+    <script type="text/javascript">
+            
+        var socket = new WebSocket("ws://10.1.11.51:8001");
+
+        socket.onopen = function () {
+            alert("Connection Established");
+        };
+
+        socket.onmessage = function (e) {
+            alert("Rx : " + e.data);
+        };
+        socket.onerror = function (e) {
+            alert("An error occured while connecting... " + e.data);
+        };
+        socket.onclose = function () {
+            alert("Connection Closed.");
+        };
+
+        function callSendMessage() {
+            socket.send("Testing");
+        }
+
+    </script>
+</head>
+
+<body>
+    <input type="button" value="Open Connecton" onclick="callWebSocket()" />
+    <input type="button" value="Send data" onclick="callSendMessage()" />
+</body>
+</html>

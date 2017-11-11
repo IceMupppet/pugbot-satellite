@@ -1,0 +1,131 @@
+<html>
+	<head>
+		<title>Pug.io</title>
+		
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		
+		<style>
+		body {
+			overflow	: hidden;
+			padding		: 0;
+			margin		: 0;
+			background-color: #000;
+		}
+		#info {
+			position	: absolute;
+			top		    : 0px;
+			width		: 100%;
+			padding		: 5px;
+			color       : #FFF;
+			text-align	: center;
+		}
+		#info a {
+			color		: #FFF;
+			text-decoration	: none;
+		}
+		#info a:hover {
+			text-decoration	: underline;
+		}
+		#container {
+			width		: 100%;
+			height		: 100%;
+			overflow	: hidden;
+			padding		: 0;
+			margin		: 0;
+			-webkit-user-select	: none;
+			-moz-user-select	: none;
+		}
+		</style>
+	</head>
+	<body>
+		<div id="container"></div>
+		<input type="button" value="Send data" onclick="callSendMessage()" />
+
+		<div id="info">
+			<span id="result"></span>
+		</div> 
+
+		<script src="scripts/virtualjoystick.js"></script>
+		<script>
+			console.log("touchscreen is", VirtualJoystick.touchScreenAvailable() ? "available" : "not available");
+
+		            
+	        var socket = new WebSocket("ws://10.1.11.51:8001");
+
+	        var heading = 0;
+	        var speed   = 0;
+	        var repeat  = 0;
+	        var stopped = true;
+
+		    socket.onopen = function () {
+	            
+	        };
+
+	        socket.onmessage = function (e) {
+	            alert("Rx : " + e.data);
+	        };
+	        socket.onerror = function (e) {
+	            alert("An error occured while connecting... " + e.data);
+	        };
+	        socket.onclose = function () {
+	            alert("Connection Closed.");
+	        };
+
+	        function callSendMessage() {
+	            socket.send("Testing");
+	        }
+
+			var joystick	= new VirtualJoystick({
+				container	: document.getElementById('container'),
+				strokeStyle     : 'red',
+				mouseSupport	: true,
+				limitStickTravel: true,
+				stickRadius     : 100
+			});
+			joystick.addEventListener('touchStart', function(){
+				console.log('down')
+			});
+			joystick.addEventListener('touchEnd', function(){
+				console.log('up')
+			});
+			setInterval(function(){
+
+				var current_heading = ( 180 - (Math.atan2(joystick.deltaX(), joystick.deltaY() ) * (180 / Math.PI))).toFixed(0);
+				var current_speed   = Math.sqrt( (joystick.deltaY()*joystick.deltaY()) + (joystick.deltaX() * joystick.deltaX())).toFixed(0);
+
+				if(speed == current_speed && heading == current_heading){
+					repeat++;
+					stopped = false;
+				}
+				else if(current_speed >= 20){
+					repeat  = 0;
+					stopped = false;
+
+					speed   = current_speed;
+					heading = current_heading;
+
+					socket.send("roll:"+current_speed+":"+current_heading);
+				}
+				else{
+					if (stopped == false) {
+						stopped = true;
+
+						socket.send("roll:0:"+heading);
+					};
+				}
+
+				var outputEl	= document.getElementById('result');
+				outputEl.innerHTML	= '<b>Debug Output:</b> '
+					+ ' dx:'+joystick.deltaX().toFixed(1)
+					+ ' dy:'+joystick.deltaY().toFixed(1)
+					+ ' direction:'+heading
+					+ ' speed:'+current_speed
+					+ (joystick.right()	? ' right'	: '')
+					+ (joystick.up()	? ' up'		: '')
+					+ (joystick.left()	? ' left'	: '')
+					+ (joystick.down()	? ' down' 	: '')	
+			}, 1/30 * 1000);
+		</script>
+	</body>
+</html>

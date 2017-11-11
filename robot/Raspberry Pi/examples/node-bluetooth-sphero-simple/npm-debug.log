@@ -1,0 +1,69 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/queeftooth/.nvm/v0.10.38/bin/node',
+1 verbose cli   '/Users/queeftooth/.nvm/v0.10.38/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'serial-port' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.38
+4 verbose cache add [ 'serial-port', null ]
+5 verbose cache add name=undefined spec="serial-port" args=["serial-port",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'serial-port',
+6 verbose parsed url   path: 'serial-port',
+6 verbose parsed url   href: 'serial-port' }
+7 silly lockFile b07ffbd9-serial-port serial-port
+8 verbose lock serial-port /Users/queeftooth/.npm/b07ffbd9-serial-port.lock
+9 silly lockFile b07ffbd9-serial-port serial-port
+10 silly lockFile b07ffbd9-serial-port serial-port
+11 verbose addNamed [ 'serial-port', '' ]
+12 verbose addNamed [ null, '*' ]
+13 silly lockFile 558815fc-serial-port serial-port@
+14 verbose lock serial-port@ /Users/queeftooth/.npm/558815fc-serial-port.lock
+15 silly addNameRange { name: 'serial-port', range: '*', hasData: false }
+16 verbose request where is /serial-port
+17 verbose request registry https://registry.npmjs.org/
+18 verbose request id 1cc5e541ef32d004
+19 verbose url raw /serial-port
+20 verbose url resolving [ 'https://registry.npmjs.org/', './serial-port' ]
+21 verbose url resolved https://registry.npmjs.org/serial-port
+22 verbose request where is https://registry.npmjs.org/serial-port
+23 info trying registry request attempt 1 at 14:38:18
+24 http GET https://registry.npmjs.org/serial-port
+25 info retry will retry, error on last attempt: Error: Hostname/IP doesn't match certificate's altnames
+26 info trying registry request attempt 2 at 14:38:31
+27 http GET https://registry.npmjs.org/serial-port
+28 info retry will retry, error on last attempt: Error: Hostname/IP doesn't match certificate's altnames
+29 info trying registry request attempt 3 at 14:39:31
+30 http GET https://registry.npmjs.org/serial-port
+31 silly lockFile 558815fc-serial-port serial-port@
+32 silly lockFile 558815fc-serial-port serial-port@
+33 error Error: Hostname/IP doesn't match certificate's altnames
+33 error     at SecurePair.<anonymous> (tls.js:1390:23)
+33 error     at SecurePair.emit (events.js:92:17)
+33 error     at SecurePair.maybeInitFinished (tls.js:980:10)
+33 error     at CleartextStream.read [as _read] (tls.js:472:13)
+33 error     at CleartextStream.Readable.read (_stream_readable.js:341:10)
+33 error     at EncryptedStream.write [as _write] (tls.js:369:25)
+33 error     at doWrite (_stream_writable.js:226:10)
+33 error     at writeOrBuffer (_stream_writable.js:216:5)
+33 error     at EncryptedStream.Writable.write (_stream_writable.js:183:11)
+33 error     at write (_stream_readable.js:602:24)
+33 error     at flow (_stream_readable.js:611:7)
+33 error     at Socket.pipeOnReadable (_stream_readable.js:643:5)
+34 error If you need help, you may report this *entire* log,
+34 error including the npm and node versions, at:
+34 error     <http://github.com/npm/npm/issues>
+35 error System Darwin 13.4.0
+36 error command "/Users/queeftooth/.nvm/v0.10.38/bin/node" "/Users/queeftooth/.nvm/v0.10.38/bin/npm" "install" "serial-port"
+37 error cwd /Users/queeftooth/wkspace2/pug_v1/examples/node-bluetooth-sphero-simple
+38 error node -v v0.10.38
+39 error npm -v 1.4.28
+40 verbose exit [ 1, true ]

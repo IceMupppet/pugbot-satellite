@@ -1,0 +1,60 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          motd
+# Required-Start:    hostname $local_fs
+# Required-Stop:
+# Should-Start:
+# Default-Start:     1 2 3 4 5
+# Default-Stop:
+# Short-Description: Create dynamic part of /etc/motd
+# Description:       /etc/motd is user-editable and static.  This script
+#                    creates the initial dynamic part, by default the
+#                    output of uname, and stores it in /var/run/motd.dynamic.
+#                    Both parts are output by pam_motd.
+### END INIT INFO
+
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+. /lib/init/vars.sh
+
+do_start () {
+        echo "\n Sphero Operating System Info:\n" > /etc/motd
+        uname -svrm | /usr/games/cowsay -n >> /etc/motd
+        echo "UART:" >> /etc/motd
+        ls /dev/ttyO* >> /etc/motd
+        echo "USB" | figlet >> /etc/motd
+        lsusb | cut -d: -f3 | awk '{$1 = ""; print $0;}' >> /etc/motd
+        echo "Network" | figlet >> /etc/motd
+        sudo iwconfig >> /etc/motd
+        echo "Open Ports:" | figlet >> /etc/motd
+        netstat -pln | grep tcp | awk '{ print "Port: " $4 " open by " $7 }' >> /etc/motd      
+         
+}
+
+
+do_status () {
+	
+		return 0
+}
+
+case "$1" in
+  start|"")
+	do_start
+	;;
+  restart|reload|force-reload)
+	echo "Error: argument '$1' not supported" >&2
+	exit 3
+	;;
+  stop)
+	# No-op
+	;;
+  status)
+	do_status
+	exit $?
+	;;
+  *)
+	echo "Usage: motd [start|stop|status]" >&2
+	exit 3
+	;;
+esac
+
+:
