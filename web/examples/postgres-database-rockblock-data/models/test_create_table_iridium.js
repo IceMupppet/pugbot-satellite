@@ -3,5 +3,5 @@ const connectionString = process.env.DATABASE_URL || 'postgres://icemupppet:pugb
 
 const client = new pg.Client(connectionString);
 client.connect();
-const query = client.query('CREATE TABLE IRIDIUM(ID INT PRIMARY KEY NOT NULL,IMEI TEXT NOT NULL,MOMSN INT NOT NULL,TRANSMIT_TIME TIMESTAMP,LATITUDE REAL,LONGITUDE REAL,CEP INT,DATA TEXT)');
+const query = client.query('CREATE TABLE TEST(ID INT PRIMARY KEY NOT NULL,IMEI TEXT NOT NULL,MOMSN INT NOT NULL,TRANSMIT_TIME TIMESTAMP,LATITUDE REAL,LONGITUDE REAL,CEP INT,DATA TEXT)');
 query.on('end', () => { client.end(); });
