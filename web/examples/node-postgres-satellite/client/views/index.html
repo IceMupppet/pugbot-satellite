@@ -9,29 +9,26 @@
   <body ng-controller="mainController">
     <div class="container">
       <div class="header">
-        <h1>PugBot Satellite : Tracking</h1>
+        <hr>
+        <h1>PugBot Satellite : Geo-Location Database </h1>
         <hr>
       </div>
 
       <br>
 
-      <ul ng-repeat="coord in coordData | orderBy:'-'">
+      <ul ng-repeat="coord in coordData">
         <li>
-          <div id="lat">{{coord.latitude}}</div>
-          <div id="long">{{coord.longitude}}</div>
+          <small><div align="right">Last known device location: [{{coord.latitude}}, {{coord.longitude}}]</div></small>
         </li>
       </ul>
-      
-
-      <br>
       <script>
       function initMap() {
-        var MyLat = document.getElementById('lat');
-        var MyLong = document.getElementById('long');
+        //var MyLat = document.getElementById('lat');
+        //var MyLong = document.getElementById('long');
   
         var uluru = {lat: 40.579, lng: 128.148};
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 6,
+          zoom: 8,
           center: uluru
         });
         var marker = new google.maps.Marker({
@@ -46,11 +43,11 @@
       
       <div id="map"></div>
 
-      <br>
-
+      <br><br><br>
+      <h4>Recent PugBot Data Packets:</h4><hr>
 
       <div class="todo-list">
-        <ul ng-repeat="todo in todoData | orderBy:'-'">
+        <ul ng-repeat="todo in todoData">
           <li>
           <div class="panel panel-default">
                   <div class="panel-heading"><input class="lead" type="checkbox" ng-click="deleteTodo(todo.id)"> <b>&nbsp; Message from Device: </b> &nbsp; &nbsp;  {{ todo.imei}} </div>
@@ -60,6 +57,7 @@
         </ul>
       </div>
     </div>
+    <br><br><br><div align="center"><small>Maximum 50 Results shown</small></div><br>
 
 
 
