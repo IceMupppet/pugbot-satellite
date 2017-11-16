@@ -4,6 +4,8 @@
     <title>Pugbot-Satellite</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+
     <link rel="stylesheet" href="/stylesheets/style.css" media="screen">
   </head>
   <body ng-controller="mainController">
@@ -21,11 +23,25 @@
           <small><div align="right">Last known device location: [{{coord.latitude}}, {{coord.longitude}}]</div></small>
         </li>
       </ul>
+      <div id="coords"></div>
       <script>
+
+        fetch('/api/v1/coords')
+          .then(response => response.json())
+          .then(data => {
+            var newLat = data[0].latitude;
+            var newLng = data[0].longitude;
+
+            // Send Debug information to coords DIV
+            $("#coords").append('<p>Latitude: ' + newLat + '</p>');
+            $("#coords").append('<p>Latitude: ' + newLng + '</p>');
+
+        })
+        .catch(err => {
+            console.error('An error ocurred', err);
+        });
+
       function initMap() {
-        //var MyLat = document.getElementById('lat');
-        //var MyLong = document.getElementById('long');
-  
         var uluru = {lat: 40.579, lng: 128.148};
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 8,
