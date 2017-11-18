@@ -15,7 +15,6 @@
         <h1>PugBot Satellite : Geo-Location Database </h1>
         <hr>
       </div>
-
       <br>
 
       <ul ng-repeat="coord in coordData">
@@ -49,19 +48,22 @@
             });
 
           var panPoint = new google.maps.LatLng(newLat, newLng);
-            map.panTo(panPoint);
+          map.panTo(panPoint);
+          document.getElementById('current').innerHTML = "<b>Showing: [" + newLat + "," + newLng + "]</b>";
 
         })
         .catch(err => {
             console.error('An error ocurred', err);
         });
     </script>
-    
+
+
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7XkThbukQ0yFi3BZZXUdYGl2cFQ7MoX0&callback=initMap">
     </script>
       
       <div id="map"></div>
+      <div id="current" align="center"></div>
 
       <br><br><br>
       <h4>Recent PugBot Data Packets:</h4><hr>
@@ -70,8 +72,16 @@
         <ul ng-repeat="todo in todoData">
           <li>
           <div class="panel panel-default">
-                  <div class="panel-heading"><input class="lead" type="checkbox" ng-click="deleteTodo(todo.id)"> <b>&nbsp; Message from Device: </b> &nbsp; &nbsp;  {{ todo.imei}} </div>
-                  <div class="panel-body"><b><big>Data: </b> &nbsp; &nbsp;  {{ todo.data}} &nbsp;</big><br><br><b> Location:</b> {{ todo.latitude }},{{ todo.longitude}}  - {{ todo.cep }}km <br><br> <b>Time:</b> {{ todo.transmit_time }}<br><div align="right"><span class="label label-default">Sequence ID: {{ todo.momsn }}</span></div></div>
+
+                  <div class="panel-heading"><input class="lead" type="checkbox" ng-click="deleteTodo(todo.id)"> <b>&nbsp; 
+                  Message from Device: </b> &nbsp; &nbsp;  {{ todo.imei}} </div>
+
+                  <div class="panel-body"><b><big>
+                   Data: </b> &nbsp; &nbsp;  {{ todo.data}} &nbsp;</big><br><br><b>
+                   Location:</b> {{ todo.latitude }},{{ todo.longitude}}  - {{ todo.cep }}km <br><br><b>
+                   Time:</b> {{ todo.transmit_time }}<br><div align="right"><span class="label label-default">
+                   Sequence ID: {{ todo.momsn }}</span></div></div>
+
           </div>
           </li>
         </ul>
