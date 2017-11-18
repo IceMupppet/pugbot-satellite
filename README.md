@@ -4,23 +4,28 @@ The Main aspects to this project are as follows:
 
 1. The Robot
    * Chassis
-   * Directional Control - Sphero
+   * Directional Control Board - *Sphero SPRK+ Board*
    		* Bluetooth LE
-   		* RGB LED
-   		* Ground Location API 
-   * Main Processor - Raspberry Pi 3
+   			* Local Phone Control via BLE
+   		* API Outputs: RGB LED, Vector Robot Control
+   		* API Inputs: IMU Streaming Data, Ground Location
+   * Main Processor - *Raspberry Pi 3*
    		* Ubuntu Linux
    		* Node.js, Express, VirtualJoystick.js
    		* Wifi Communication: WebSockets Server, Local Diagonstics
    		* Serial Communication:
    			* Port 1:  RockBLOCK (19002 Baud)
    			* Port 2:  Sphero API (115200 Baud)
+   		* GPIO: Temperature, 
+   	* Communication and GPS Data - *RockBLOCK SDB Radio* 
+   		* API Inputs: imei, momsn, transmit_time, latitude, longitude, cep, data
+
 2. The Webserver
 	* Ubuntu Linux
    	* Node.js, PostgreSQL, Angular.js, Express, and Bootstrap
    	* RESTful API
-   		* Coords
-   		* todos
+   		* Coords : Last known Latitude, Longitude
+   		* todos : list of all data packets from RockBLOCK Servers
 
    		
 
