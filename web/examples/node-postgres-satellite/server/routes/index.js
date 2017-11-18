@@ -10,6 +10,19 @@ router.get('/', (req, res, next) => {
     __dirname, '..', '..', 'client', 'views', 'index.html'));
 });
 
+router.get('/heatmap', (req, res, next) => {
+  res.sendFile(path.join(
+    __dirname, '..', '..', 'client', 'views', 'heatmap.html'));
+});
+
+router.get('/fusion', (req, res, next) => {
+  res.sendFile(path.join(
+    __dirname, '..', '..', 'client', 'views', 'fusion.html'));
+});
+
+
+
+
 router.get('/api/v1/todos', (req, res, next) => {
   const results = [];
   // Get a Postgres client from the connection pool
