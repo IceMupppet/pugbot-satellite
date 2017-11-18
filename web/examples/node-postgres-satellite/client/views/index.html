@@ -23,36 +23,40 @@
           <small><div align="right">Last known device location: [{{coord.latitude}}, {{coord.longitude}}]</div></small>
         </li>
       </ul>
-      <div id="coords"></div>
+
       <script>
+        var newLat = 0.0;
+        var newLng = 0.0;
+        var map;
+        function initMap() {
+          var uluru = {lat: newLat, lng: newLng};
+          map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 8,
+            center: uluru
+          });
+        }
 
         fetch('/api/v1/coords')
           .then(response => response.json())
           .then(data => {
-            var newLat = data[0].latitude;
-            var newLng = data[0].longitude;
+            newLat = parseFloat(data[0].latitude);
+            newLng = parseFloat(data[0].longitude);
+            uluru = {lat: newLat, lng: newLng};
+           
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+            });
 
-            // Send Debug information to coords DIV
-            $("#coords").append('<p>Latitude: ' + newLat + '</p>');
-            $("#coords").append('<p>Latitude: ' + newLng + '</p>');
+          var panPoint = new google.maps.LatLng(newLat, newLng);
+            map.panTo(panPoint);
 
         })
         .catch(err => {
             console.error('An error ocurred', err);
         });
-
-      function initMap() {
-        var uluru = {lat: 40.579, lng: 128.148};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 8,
-          center: uluru
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
-      }
     </script>
+    
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7XkThbukQ0yFi3BZZXUdYGl2cFQ7MoX0&callback=initMap">
     </script>
