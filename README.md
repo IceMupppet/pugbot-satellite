@@ -1,42 +1,12 @@
 # PugBot Satellite 
 
-The Main aspects to this project are as follows:  
+This project uses two (2) separate node.js webservers.  
 
-1. The Robot
-   * Chassis
-   		* Battery: 2000mAh LiPo 14V Battery
-   		* Motors: 2 x 12V DC Motors
-   		* Power Board: 12V, 5V Breakout, Power switch
-   * Directional Control Board - *Sphero SPRK+ Board*
-   		* Bluetooth LE
-   			* Local Phone Control via BLE
-   		* API Outputs: RGB LED, Vector Robot Control
-   		* API Inputs: IMU Streaming Data, Ground Location
-   * Main Processor - *Raspberry Pi 3*
-   		* Ubuntu Linux
-   		* Node.js, Express, VirtualJoystick.js, Socket.io
-   		* Wifi Communication: WebSockets Server, Local Diagonstics
-   		* Serial Communication:
-   			* Port 1:  RockBLOCK (19002 Baud)
-   			* Port 2:  Sphero API (115200 Baud)
-   		* GPIO Sensors: Temperature, Light Data
-   	* Communication and GPS Data - *RockBLOCK SDB Radio* 
-   		* API Inputs: imei, momsn, transmit_time, latitude, longitude, cep, data
+### Hosted Webserver 
+The first one is located on a hosted server. (in this case DigitalOcean) This server hosts RESTful endpoints to gather all data being sent to/from the Robot via Iridium Satellite SBD Rock7.com.  There are REST points for off loading sensor data from the Robot as well.  It hosts the Socket Server for the robot client to attach to that will allow the user to drive the robot (on Wifi) from anywhere that has internet using the Control page.  It also serves as the Dashboard, Location Tracking, and Control Module for the PugBot.
 
-2. The Webserver
-	* Ubuntu Linux
-   	* Node.js, PostgreSQL, Angular.js, Express, VirtualJoystick.js, Socket.io and Bootstrap
-   	* Web Resources
-   		* Dashboard
-   		* Location
-   		* Control
-   		* Communication
-   	* RESTful API
-   		* Coords : Last known Latitude, Longitude
-   		* todos : list of all data packets from RockBLOCK Servers
-
-   		
-
+### Robot Webserver
+This webserver is hosted on the robot iteself.  This server will host a Similar Control Page as that on the Hosted Webserver for local driving sent through Serial to the Sphero Board.  It will also host the Socket Client that attaches to the Hosted Server Websock server for control via the internet.  This Webserver maintains the local database of collected sensor data.
 
 ## Setup
 
