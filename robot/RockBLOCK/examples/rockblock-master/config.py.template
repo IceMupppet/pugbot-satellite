@@ -1,0 +1,11 @@
+
+# Configuration file
+
+db='data/status.d'
+message_db='data/messages.d'
+log='data/log.d'
+# IMEI of the target RockBLOCK
+imei = ""
+# Your RockBLOCK username and password
+username = ""
+password = ""

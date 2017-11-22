@@ -1,0 +1,45 @@
+=== 1.0.0 / 2012-07-20
+
+* 1 major enhancement
+
+  * Birthday!
+
+=== 1.0.1 / 2012-10-28
+
+* 3 minor fixes/enhancements
+
+  * Works with Ruby 1.9.2 for us regular folks
+  * Sphero.start method to endlessly retry when connecting
+  * I think heading might work again, not too sure
+
+=== 1.1.0 / 2013-01-04
+
+* 3 enhancements
+
+  * Pass a block to Sphero.start for DSL-awesomeness
+  * Use Sphero#keep_going as a nicer alias for Ruby's sleep command
+  * Add some additional test coverage
+
+=== 1.1.2 / 2013-01-07
+
+* 1 bugfix
+
+  * Correct Sphero#keep_going to call Kernel sleep method correctly
+
+=== 1.1.3 / 2013-01-07
+
+* 1 enhancement/bugfix depending on how you look at it
+
+  * Change Sphero#sleep to Sphero#sphero_sleep to distingish naive call to Kernel sleep
+
+=== 1.1.4 / 2013-01-10
+
+* 1 enhancement
+
+  * Add constants FORWARD, BACKWARD, RIGHT, & LEFT for quick directionality
+
+=== 1.5.0 / 2014-02-06
+
+* Many enhancements and bugfixes
+
+  * Been too long since our last changelog entry. Many bugfixes and enhancements.

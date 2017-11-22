@@ -1,0 +1,43 @@
+/* map stuff */
+
+#map {
+	height: 400px;
+}
+
+span.mt {
+	color: green;
+}
+
+span.mo {
+	color: blue;
+}
+
+label {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+}
+
+/* text messages */
+
+table {
+	width: 50%;
+}
+
+td {
+	vertical-align: top;
+}
+
+div#msgs {
+	height: 200px;
+}
+
+input {
+	margin: 5px;
+}
+
+input#text {
+	size: 50;
+	width: 50%;
+}
+

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Troubled Child Tracking</title>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>  
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>  
+  <script src="map.js"></script>
+  <script>
+    $( function() {
+      $( "#tabs" ).tabs();
+    });
+  </script>
+  <link rel="stylesheet" href="map.css">          
+</head>
+<body>
+    <div id="tabs">
+      <ul>
+        <li><a href="#tabs-2">Messaging</a></li>
+        <li><a href="#tabs-1">Tracking</a></li>
+      </ul>
+      
+      <div id="tabs-1">
+        <div id="map"></div>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAff5vHXAJ-p4wNprkQ4hTXj36TQ2RPJy0&callback=initMap"></script>
+      </div>
+      
+      <div id="tabs-2">
+        <table border="1px" width="100%">
+          <tbody>
+            <tr><td><div id="msgs"></div></td></tr>
+            <tr><td>
+              <form id="messaging">
+                <input type="text" id="message" placeholder="text message"/>
+                <input class="ui-button ui-widget ui-corner-all" type="submit" value="Send"/>
+                <div id="status"></div>
+              </form>
+            </td></tr>
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+  </body>
+</html>

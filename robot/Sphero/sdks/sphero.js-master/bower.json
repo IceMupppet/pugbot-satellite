@@ -1,0 +1,32 @@
+{
+  "name": "sphero",
+  "main": "dist/sphero.min.js",
+  "version": "0.3.0",
+  "description": "The Orbotix JavaScript SDK to control Sphero robots.",
+  "homepage": "https://github.com/orbotix/sphero.js",
+  "authors": [
+    "Sphero <r@orbotix.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/orbotix/sphero.js"
+  },
+  "keywords": [
+    "robot",
+    "robots",
+    "robotics",
+    "hardware",
+    "sphero",
+    "spherojs",
+    "sphero-js",
+    "orbotix"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "spec",
+    "examples"
+  ]
+}

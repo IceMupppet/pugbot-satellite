@@ -1,0 +1,6 @@
+uwsgi:
+    socket: /run/www-sockets/rockblock-relay.sock
+    virtualenv: /opt/rockblock-relay/venv
+    chdir: /opt/rockblock-relay
+    mount: /rockblock-relay=rockblock_relay.web:app
+    manage-script-name: true

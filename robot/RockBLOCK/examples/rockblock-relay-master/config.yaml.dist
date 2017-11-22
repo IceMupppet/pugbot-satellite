@@ -1,0 +1,16 @@
+database: rockblock-relay
+email:
+  - you@domain
+imei:
+    rocket: 300234010753370
+    mission_control: 100123456123123
+repeat:
+    rocket:
+      - mission_control
+    irc:
+      - mission_control
+irc:
+    host: irc.host
+    port: 6667
+    channel: '#cusf'
+    nickname: RockBLOCK
