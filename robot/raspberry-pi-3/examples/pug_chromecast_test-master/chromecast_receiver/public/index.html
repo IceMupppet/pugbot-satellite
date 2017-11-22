@@ -1,0 +1,36 @@
+<html>
+<head>
+    <title>Chromecast Test</title>
+</head>
+<body>
+<script type="text/javascript" src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js"></script>
+<script type="text/javascript">
+
+    window.onload = function () {
+        cast.receiver.logger.setLevelValue(0);
+        window.castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
+
+        console.log("castReceiverManager started!");
+
+        castReceiverManager.onSenderDisconnected = function (event) {
+            console.log("castReceiverManager lost connection!");
+            if (window.castReceiverManager.getSenders().length == 0
+                    && event.reason == cast.receiver.system.DisconnectReason.REQUESTED_BY_SENDER) {
+                window.close();
+            }
+        };
+
+        window.messageBus = window.castReceiverManager.getCastMessageBus('urn:x-cast:com.sphero.testmessage');
+        messageBus.onMessage = function (event) {
+
+        };
+
+        castReceiverManager.start();
+    };
+
+</script>
+<h1>Chromecast Test App</h1>
+
+<p>My Super Cool Test App!</p>
+</body>
+</html>

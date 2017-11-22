@@ -1,0 +1,13 @@
+extends layout
+
+block title
+	script(src='/javascripts/watsoncommunication.js')
+
+block content
+	h1= title
+	p Welcome to #{title}
+	form(name="query", action="wolfram_query", method="get")
+		key Ask Wolfram:
+			input(type="text", name="in_query")
+		| <br/>
+		input(type="submit", value="Ask!")
