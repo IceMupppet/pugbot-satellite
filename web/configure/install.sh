@@ -1,8 +1,22 @@
 #!/bin/sh
 
+echo "\n      ___         ___           ___                         ___                   "                   
+echo "\n     /\  \       /\  \         /\__\         _____         /\  \                  "  
+echo "\n    /::\  \      \:\  \       /:/ _/_       /::\  \       /::\  \         ___     " 
+echo "\n   /:/\:\__\      \:\  \     /:/ /\  \     /:/\:\  \     /:/\:\  \       /\__\    "
+echo "\n  /:/ /:/  /  ___  \:\  \   /:/ /::\  \   /:/ /::\__\   /:/  \:\  \     /:/  /    "
+echo "\n /:/_/:/  /  /\  \  \:\__\ /:/__\/\:\__\ /:/_/:/\:|__| /:/__/ \:\__\   /:/__/     "
+echo "\n \:\/:/  /   \:\  \ /:/  / \:\  \ /:/  / \:\/:/ /:/  / \:\  \ /:/  /  /::\  \     "
+echo "\n  \::/__/     \:\  /:/  /   \:\  /:/  /   \::/_/:/  /   \:\  /:/  /  /:/\:\  \    " 
+echo "\n   \:\  \      \:\/:/  /     \:\/:/  /     \:\/:/  /     \:\/:/  /   \/__\:\  \   "
+echo "\n    \:\__\      \::/  /       \::/  /       \::/  /       \::/  /         \:\__\  "
+echo "\n     \/__/       \/__/         \/__/         \/__/         \/__/           \/__/  "
+echo "\n "
+echo "\n        HOSTED WEBSERVER INSTALLATION SCRIPT:  Ubuntu 16.01+ Linux Server" 
+
 # Installing external packages using apt-get
 
-echo "Upgrade/update package manager, repositories and packages"
+echo "\nUpgrade/update package manager, repositories and packages"
 
 echo "\n**************  Package Manager:"
 apt-get -y update
