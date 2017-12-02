@@ -1,18 +1,18 @@
-angular.module('nodeTodo', [])
+angular.module('nodePugbot', [])
 .controller('mainController', ($scope, $http) => {
   $scope.formData = {};
-  $scope.todoData = {};
+  $scope.coordData = {};
+  $scope.pugbotData = {};
   // Get all todos
-  $http.get('/api/v1/todos')
+  $http.get('/api/v1/pugbot')
   .success((data) => {
-    $scope.todoData = data;
+    $scope.pugbotData = data;
     console.log(data);
   })
   .error((error) => {
     console.log('Error: ' + error);
   });
-
-    // Get all coords
+  // Get all coords
   $http.get('/api/v1/coords')
   .success((data) => {
     $scope.coordData = data;
@@ -21,14 +21,12 @@ angular.module('nodeTodo', [])
   .error((error) => {
     console.log('Error: ' + error);
   });
-
-
   // Create a new todo
-  $scope.createTodo = () => {
-    $http.post('/api/v1/todos', $scope.formData)
+  $scope.createPugbot = () => {
+    $http.post('/api/v1/pugbot', $scope.formData)
     .success((data) => {
       $scope.formData = {};
-      $scope.todoData = data;
+      $scope.pugbotData = data;
       console.log(data);
     })
     .error((error) => {
@@ -36,10 +34,10 @@ angular.module('nodeTodo', [])
     });
   };
   // Delete a todo
-  $scope.deleteTodo = (todoID) => {
-    $http.delete('/api/v1/todos/' + todoID)
+  $scope.deletePugbot = (pugbotID) => {
+    $http.delete('/api/v1/pugbot/' + pugbotID)
     .success((data) => {
-      $scope.todoData = data;
+      $scope.pugbotData = data;
       console.log(data);
     })
     .error((data) => {

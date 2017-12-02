@@ -1,5 +1,5 @@
 {
-  "name": "node-postgres-todo",
+  "name": "node-postgres-satellite",
   "version": "0.0.0",
   "private": true,
   "scripts": {

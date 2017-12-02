@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="nodeTodo">
+<html ng-app="nodePugbot">
   <head>
     <title>Pugbot-Satellite</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,10 +18,7 @@
           <a class="navbar-brand" href="#"><font color="#fcd00c">PugBot Satellite</font></a>
         </div>
         <ul class="nav navbar-nav">
-          <li><a href="heatmap">Dashboard</a></li>
           <li class="active"><a href="#">Location</a></li>
-          <li><a href="heatmap">Control</a></li>
-          <li><a href="comms">Communication</a></li>
         </ul>
       </div>
     </nav>
@@ -84,27 +81,27 @@
       <h3>Recent <font color="#fcd00c">PugBot</font> Short Data Burst (SDB) Packets:</h3>
       <small><font color="#565656">Using <a href="https://rockblock.rock7.com" target="_blank">rockblock.rock7.com</a> - <b>Data Structure: </b>(imei, momsn, transmit_time, latitude, longitude, cep, data)</font></small><hr>
 
-      <div class="todo-list">
-        <ul ng-repeat="todo in todoData">
+      <div class="pugbot-list">
+        <ul ng-repeat="pugbot in pugbotData">
           <li>
           <div class="panel panel-default">
 
-                  <div class="panel-heading"><input class="lead" type="checkbox" ng-click="deleteTodo(todo.id)"> <b>&nbsp; 
-                  Message from Device: </b> &nbsp; &nbsp;  {{ todo.imei}} </div>
+                  <div class="panel-heading"><input class="lead" type="checkbox" ng-click="deletePugbot(pugbot.id)"> <b>&nbsp; 
+                  Message from Device: </b> &nbsp; &nbsp;  {{ pugbot.imei}} </div>
 
 
                   <div class="panel-body"><b><big>
-                   Data: </b> &nbsp; &nbsp;  {{ todo.data}} &nbsp;</big><br><br><b>
-                   Location:</b> {{ todo.latitude }},{{ todo.longitude}}  - {{ todo.cep }}km <br><br><b>
-                   Time:</b> {{ todo.transmit_time }}<br><div align="right"><span class="label label-default">
-                   Sequence ID: {{ todo.momsn }}</span></div></div>
+                   Data: </b> &nbsp; &nbsp;  {{ pugbot.data}} &nbsp;</big><br><br><b>
+                   Location:</b> {{ pugbot.latitude }},{{ pugbot.longitude}}  - {{ pugbot.cep }}km <br><br><b>
+                   Time:</b> {{ pugbot.transmit_time }}<br><div align="right"><span class="label label-default">
+                   Sequence ID: {{ pugbot.momsn }}</span></div></div>
 
           </div>
           </li>
         </ul>
       </div>
     </div>
-    <br><br><br><div align="center"><small>Maximum 50 Results shown</small></div><br>
+    <br><br><br><div align="center"><small>Maximum 30 Results shown</small></div><br>
 
 
 

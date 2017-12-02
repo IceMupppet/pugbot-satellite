@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html ng-app="nodeTodo">
+  <head>
+    <title>Pugbot-Satellite</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/darkly/bootstrap.min.css" rel="stylesheet" integrity="sha384-S7YMK1xjUjSpEnF4P8hPUcgjXYLZKK3fQW1j5ObLSl787II9p8RO9XUGehRmKsxd" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/style.css" media="screen">
+  </head>
+
+
+
+  <body ng-controller="mainController">
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#"><font color="#fcd00c">PugBot Satellite</font></a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><a href="heatmap">Dashboard</a></li>
+          <li class="active"><a href="#">Location</a></li>
+          <li><a href="heatmap">Control</a></li>
+          <li><a href="comms">Communication</a></li>
+        </ul>
+      </div>
+    </nav>
+    <br><br>
+    <div class="container">
+      <br>
+      <ul ng-repeat="coord in coordData">
+        <li>
+          <small><div align="right">Last known device location: [{{coord.latitude}}, {{coord.longitude}}]</div></small>
+        </li>
+      </ul>
+
+      <script>
+        var newLat = 0.0;
+        var newLng = 0.0;
+        var map;
+        function initMap() {
+          var uluru = {lat: newLat, lng: newLng};
+          map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 10,
+            scrollwheel: false,
+            center: uluru,
+            mapTypeId: 'hybrid'
+          });
+        }
+
+        fetch('/api/v1/coords')
+          .then(response => response.json())
+          .then(data => {
+            newLat = parseFloat(data[0].latitude);
+            newLng = parseFloat(data[0].longitude);
+            uluru = {lat: newLat, lng: newLng};
+            var image = 'https://cdn1.iconfinder.com/data/icons/crown-5/154/death-head-dead-skull-3-64.png';
+           
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map,
+                icon: image
+            });
+
+          var panPoint = new google.maps.LatLng(newLat, newLng);
+          map.panTo(panPoint);
+          document.getElementById('current').innerHTML = "<b>Showing: [" + newLat + ", " + newLng + "]</b>";
+
+        })
+        .catch(err => {
+            console.error('An error ocurred', err);
+        });
+    </script>
+
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7XkThbukQ0yFi3BZZXUdYGl2cFQ7MoX0&callback=initMap">
+    </script>
+      
+      <div id="map"></div>
+      <div id="current" align="center"></div>
+
+      <br><br><br>
+      <h3>Recent <font color="#fcd00c">PugBot</font> Short Data Burst (SDB) Packets:</h3>
+      <small><font color="#565656">Using <a href="https://rockblock.rock7.com" target="_blank">rockblock.rock7.com</a> - <b>Data Structure: </b>(imei, momsn, transmit_time, latitude, longitude, cep, data)</font></small><hr>
+
+      <div class="todo-list">
+        <ul ng-repeat="todo in todoData">
+          <li>
+          <div class="panel panel-default">
+
+                  <div class="panel-heading"><input class="lead" type="checkbox" ng-click="deleteTodo(todo.id)"> <b>&nbsp; 
+                  Message from Device: </b> &nbsp; &nbsp;  {{ todo.imei}} </div>
+
+
+                  <div class="panel-body"><b><big>
+                   Data: </b> &nbsp; &nbsp;  {{ todo.data}} &nbsp;</big><br><br><b>
+                   Location:</b> {{ todo.latitude }},{{ todo.longitude}}  - {{ todo.cep }}km <br><br><b>
+                   Time:</b> {{ todo.transmit_time }}<br><div align="right"><span class="label label-default">
+                   Sequence ID: {{ todo.momsn }}</span></div></div>
+
+          </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <br><br><br><div align="center"><small>Maximum 50 Results shown</small></div><br>
+
+
+
+    <script src="//code.jquery.com/jquery-2.2.4.min.js" type="text/javascript"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.6/angular.min.js"></script>
+    <script src="javascripts/app.js"></script>
+  </body>
+</html>

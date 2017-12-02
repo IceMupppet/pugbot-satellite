@@ -13,14 +13,14 @@
 #
 # Examples:
 #     load-test.sh
-#     load-test.sh http://localhost:3000/api/v1/todos todo 60 100
+#     load-test.sh http://localhost:3000/api/v1/pugbot pugbot 60 100
 
 # Use bash unofficial strict mode http://redsymbol.net/articles/unofficial-bash-strict-mode/
 set -eou pipefail
 IFS=$'\n\t'
 
-url=${1:-http://localhost:3000/api/v1/todos}
-db=${2:-todo}
+url=${1:-http://localhost:3000/api/v1/pugbot}
+db=${2:-pugbot}
 duration=${3:-10}
 users=${4:-20}
 
