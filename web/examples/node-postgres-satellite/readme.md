@@ -1,15 +1,27 @@
-# PostgreSQL and NodeJS
+# PostgreSQL and NodeJS with RockBLOCK
 
-This is a basic single page application built with Node, Express, Angular, and PostgreSQL.
+This is a basic single page application built with Node, Express, Angular, and PostgreSQL.  This will create the proprer table and REST points to capture packets from the test delivery section of Rock7.com along with actual packets from the RockBLOCK.
 
 ## Quick Start
 
 1. Clone the repo
 1. Install dependencies: `npm install`
-1. Start your Postgres server and create a database called "pugbot"
-2. Create a user name icemupppet with password pugbot-satellite
-1. Create the database tables: `node server/models/database.js`
+1. Start your Postgres server and create a database called **pugbot**
+2. Create a new user **icemupppet** with password **pugbot-satellite**
+1. Create the database tables: `node server/models/create_table_iridium.js`
 1. Start the server: `$ npm start`
+
+## REST Endpoints
+
+```
+  /api/v1/pugbot
+       GET
+       POST
+       DELETE
+  /api/v1/coords
+       GET
+```
+
 
 ## Project Architecture
 
