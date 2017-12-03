@@ -11,6 +11,26 @@ This is a basic single page application built with Node, Express, Angular, and P
 1. Create the database tables: `node server/models/database.js`
 1. Start the server: `$ npm start`
 
+## Project Architecture
+
+```
+  ├-- Client
+      └-- Views
+          ├-- index.html
+      ├-- Javascripts
+          ├-- app.js
+      └-- Stylesheets
+          ├-- style.css
+  ├-- Server
+      └-- Modules
+          ├-- create_table_iridium.js
+      └-- Routes
+          ├-- index.js
+  ├-- Test
+  ├-- App.js
+```
+
+
 ## Tests
 
 This comes with a load test using [Apache Bench](http://httpd.apache.org/docs/2.2/programs/ab.html) that by default exercises the API endpoint for the `/api/v1/pugbot` service:
