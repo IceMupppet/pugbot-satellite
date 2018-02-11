@@ -12,9 +12,10 @@ from http import server
 PAGE="""\
 <html>
 <head>
-<title>IceCam</title>
+<title>WW - Ultimaker 2.0 Camera</title>
 </head>
-<body bgcolor="#999999">
+<body bgcolor="#FEFEFE">
+<center><img src="https://www.dream3d.co.uk/wp-content/uploads/2014/07/Ultimaker-Logo.png"></center><br>
 <center><img src="stream.mjpg" width="1024" height="768"></center>
 </body>
 </html>
